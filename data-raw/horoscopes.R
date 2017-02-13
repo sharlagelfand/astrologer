@@ -36,8 +36,8 @@ horoscopes <- horoscopes %>%
                       date_url %>%
                       read_html() %>%
                       html_nodes("a") %>%
-                      html_attr("href") %>% # extract the URLs
-                      str_subset('horoscope') %>% # only horoscope links
+                      html_attr("href") %>%
+                      str_subset('scope') %>% # only horoscope links -- sometimes written weirdly!
                       str_subset(str_c(year, "/", month)) %>% # for that year/month only
                       unique())) %>%
   unnest(url) %>%
@@ -47,7 +47,7 @@ horoscopes <- horoscopes %>%
 # Extract start date for each horoscope
 horoscopes <- horoscopes %>%
   mutate(day = map_dbl(url,
-                       ~ str_match(str_match(.x, "horoscopes(.*?)/")[,2], "[0-9]+") %>%
+                       ~ str_match(str_match(.x, "scope(.*?)/")[,2], "[0-9]+") %>%
                          as.numeric()),
          startdate = ymd(str_c(year, "/", month, "/", day)))
 
@@ -113,5 +113,4 @@ horoscopes <- horoscopes %>%
   select(startdate, zodiacsign, horoscope, url)
 
 # Add data files to package
-
 devtools::use_data(horoscopes, overwrite = TRUE)

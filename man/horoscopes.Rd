@@ -4,12 +4,12 @@
 \name{horoscopes}
 \alias{horoscopes}
 \title{Weekly horoscopes from Chani Nicholas}
-\format{A data frame with 1248 rows and 4 variables:
+\format{A data frame with 1272 rows and 4 variables:
 \describe{
-  \item{startdate}{the start date that this weekly horoscope is for}
-  \item{zodiacsign}{the zodiac sign this horoscope is for}
-  \item{horoscope}{the horoscope itself}
-  \item{url}{the URL that the horoscope is pulled from}
+  \item{\code{startdate}}{the start date that this weekly horoscope is for}
+  \item{\code{zodiacsign}}{the zodiac sign this horoscope is for}
+  \item{\code{horoscope}}{the horoscope itself}
+  \item{\code{url}}{the URL that the horoscope is pulled from}
 }}
 \source{
 \url{http://chaninicholas.com}
@@ -18,8 +18,13 @@
 horoscopes
 }
 \description{
-Returns weekly horoscopes from \url{http://chaninicholas.com}. Includes data
-for 2015-2017, all weeks that horoscopes were written for (start dates
-between January 5, 2015 and February 6, 2017).
+Returns horoscopes from \url{http://chaninicholas.com}. Includes data for
+2015-2017, with start dates between 2015-01-05 and 2017-02-06.All horoscopes
+are written for one week, with the exception of the horoscopes starting on
+2015-03-23, which were written for two weeks.
+}
+\details{
+Horoscopes are missing for the weeks starting on 2015-06-29, 2016-10-31,
+and 2016-12-26.
 }
 \keyword{datasets}
