@@ -37,7 +37,7 @@ horoscopes <- horoscopes %>%
                       read_html() %>%
                       html_nodes("a") %>%
                       html_attr("href") %>% # extract the URLs
-                      str_subset('horoscopes') %>% # only horoscope links
+                      str_subset('horoscope') %>% # only horoscope links
                       str_subset(str_c(year, "/", month)) %>% # for that year/month only
                       unique())) %>%
   unnest(url) %>%
@@ -55,7 +55,8 @@ horoscopes <- horoscopes %>%
 horoscopes <- horoscopes %>%
   mutate(date_manual = case_when(.$url == "http://chaninicholas.com/2015/01/new-moon-aquariusmercury-retrograde-horoscopes/" ~ ymd("2015-01-19"),
                                  .$url == "http://chaninicholas.com/2015/02/new-moon-aquarius-horoscopes/" ~ ymd("2015-02-16"),
-                                 .$url == "http://chaninicholas.com/2015/12/horoscopes-for-the-winter-solstice-and-the-full-moon-in-cancer/" ~ ymd("2015-12-21")),
+                                 .$url == "http://chaninicholas.com/2015/12/horoscopes-for-the-winter-solstice-and-the-full-moon-in-cancer/" ~ ymd("2015-12-21"),
+                                 .$url == "http://chaninicholas.com/2017/01/2017-your-horoscope-for-the-year-ahead/" ~ ymd("2017-01-02")),
          startdate = if_else(is.na(startdate), date_manual, startdate)) %>%
   select(-day, -date_manual)
 
