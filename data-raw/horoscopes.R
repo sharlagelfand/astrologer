@@ -49,14 +49,14 @@ horoscopes <- horoscopes %>%
   mutate(day = map_dbl(url,
                        ~ str_match(str_match(.x, "horoscopes(.*?)/")[,2], "[0-9]+") %>%
                          as.numeric()),
-         start_date = ymd(str_c(year, "/", month, "/", day)))
+         startdate = ymd(str_c(year, "/", month, "/", day)))
 
 # Fill in missing dates
 horoscopes <- horoscopes %>%
   mutate(date_manual = case_when(.$url == "http://chaninicholas.com/2015/01/new-moon-aquariusmercury-retrograde-horoscopes/" ~ ymd("2015-01-19"),
                                  .$url == "http://chaninicholas.com/2015/02/new-moon-aquarius-horoscopes/" ~ ymd("2015-02-16"),
                                  .$url == "http://chaninicholas.com/2015/12/horoscopes-for-the-winter-solstice-and-the-full-moon-in-cancer/" ~ ymd("2015-12-21")),
-         start_date = if_else(is.na(start_date), date_manual, start_date)) %>%
+         startdate = if_else(is.na(startdate), date_manual, startdate)) %>%
   select(-day, -date_manual)
 
 
@@ -91,7 +91,7 @@ horoscopes <- horoscopes %>%
                             "Sagittarius", "Capricorn", "Aquarius", "Pisces"),
                    join = TRUE),
             by = "join") %>%
-  group_by(start_date, zodiacsign) %>%
+  group_by(startdate, zodiacsign) %>%
   mutate(start_of_sign = map2(text_split, zodiacsign,
                               ~ which(str_detect(.x, str_c("^", .y, ".*Rising")) |
                                         str_detect(.x, str_c("^", .y, " &")) |
@@ -104,12 +104,12 @@ horoscopes <- horoscopes %>%
                               lead(start_of_sign) - 2,
                               text_length),
          horoscope = pmap_chr(list(text_split, start_of_sign, end_of_sign),
-                              function(text_split, start_of_sign, end_of_sign) 
+                              function(text_split, start_of_sign, end_of_sign)
                                 str_c(text_split[start_of_sign:end_of_sign], collapse = " ")))
 
 # Remove exta variables
 horoscopes <- horoscopes %>%
-  select(start_date, zodiacsign, horoscope, url)
+  select(startdate, zodiacsign, horoscope, url)
 
 # Add data files to package
 

@@ -6,7 +6,7 @@
 #'
 #' @format A data frame with 1248 rows and 4 variables:
 #' \describe{
-#'   \item{start_date}{the start date that this weekly horoscope is for}
+#'   \item{startdate}{the start date that this weekly horoscope is for}
 #'   \item{zodiacsign}{the zodiac sign this horoscope is for}
 #'   \item{horoscope}{the horoscope itself}
 #'   \item{url}{the URL that the horoscope is pulled from}
