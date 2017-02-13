@@ -1,0 +1,13 @@
+Package: astrologer
+Type: Package
+Title: Chani Nicholas Weekly Horoscopes (2013-2017)
+Version: 0.0.0.9000
+Authors@R: person("Sharla", "Gelfand", email = "sharla.gelfand@gmail.com",
+  role = c("aut", "cre"))
+Description: Weekly horoscopes (2015-2017) pulled from chaninicholas.com.
+Depends:
+    R (>= 3.3.2)
+License: CC0
+LazyData: true
+URL: http://github.com/sharlagelfand/astrologer
+RoxygenNote: 6.0.1
