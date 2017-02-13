@@ -7,6 +7,7 @@ library(httr)
 library(forcats)
 library(purrr)
 library(tidyr)
+library(forcats)
 
 # Check which URLs exist for all year/month combinations
 horoscopes <- crossing(year = 2015:2017,
