@@ -108,9 +108,14 @@ horoscopes <- horoscopes %>%
                               function(text_split, start_of_sign, end_of_sign)
                                 str_c(text_split[start_of_sign:end_of_sign], collapse = " ")))
 
-# Remove exta variables
+# Remove exta variables, order by date/signs
 horoscopes <- horoscopes %>%
-  select(startdate, zodiacsign, horoscope, url)
+  select(startdate, zodiacsign, horoscope, url)  %>%
+  mutate(zodiacsign = fct_relevel(zodiacsign, c("Aries", "Taurus", "Gemini", "Cancer",
+                                                "Leo", "Virgo", "Libra", "Scorpio",
+                                                "Sagittarius", "Capricorn", "Aquarius", "Pisces"))) %>%
+  arrange(startdate, zodiacsign)
+
 
 # Add data files to package
 devtools::use_data(horoscopes, overwrite = TRUE)
