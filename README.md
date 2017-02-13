@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sharlagelfand/astrologer.svg?branch=master)](https://travis-ci.org/sharlagelfand/astrologer)
+
 # astrologer
 
 This package contains one dataset, `horoscopes`, of weekly(ish) horoscopes from
